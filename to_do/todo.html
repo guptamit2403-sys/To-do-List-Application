@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A responsive task manager with local storage.">
+    <title>FocusFlow - To-Do List</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+
+<body>
+    <main class="app-shell">
+        <header class="app-header">
+            <div>
+                <p class="eyebrow">TASK MANAGER</p>
+                <h1>FocusFlow</h1>
+                <p class="subtitle">Plan your day. Make progress.</p>
+            </div>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme">☾</button>
+        </header>
+
+        <section class="task-panel" aria-labelledby="newTaskHeading">
+            <h2 id="newTaskHeading">Add a new task</h2>
+            <form id="taskForm">
+                <label class="sr-only" for="taskInput">Task name</label>
+                <input id="taskInput" type="text" maxlength="120" placeholder="What needs to be done?"
+                    autocomplete="off" required>
+                <div class="task-options">
+                    <label>Category
+                        <select id="category">
+                            <option value="Personal">Personal</option>
+                            <option value="Work">Work</option>
+                            <option value="Study">Study</option>
+                            <option value="Health">Health</option>
+                        </select>
+                    </label>
+                    <label>Priority
+                        <select id="priority">
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </label>
+                    <label>Due date
+                        <input id="dueDate" type="date">
+                    </label>
+                    <button id="submitButton" class="add-button" type="submit">Add Task</button>
+                </div>
+                <p class="form-message" id="formMessage" role="status"></p>
+            </form>
+        </section>
+
+        <section class="overview" aria-label="Task overview">
+            <article><span id="totalCount">0</span>
+                <p>Total tasks</p>
+            </article>
+            <article><span id="pendingCount">0</span>
+                <p>Pending</p>
+            </article>
+            <article><span id="completedCount">0</span>
+                <p>Completed</p>
+            </article>
+        </section>
+
+        <section class="tasks-section" aria-labelledby="tasksHeading">
+            <div class="tasks-heading">
+                <h2 id="tasksHeading">Your tasks</h2>
+                <button id="clearCompleted" class="text-button" type="button">Clear completed</button>
+            </div>
+            <div class="filters">
+                <label class="search-box" for="searchInput"><span>⌕</span><input id="searchInput" type="search"
+                        placeholder="Search tasks"></label>
+                <div class="filter-buttons" aria-label="Filter tasks">
+                    <button class="filter active" data-filter="all" type="button">All</button>
+                    <button class="filter" data-filter="pending" type="button">Pending</button>
+                    <button class="filter" data-filter="completed" type="button">Completed</button>
+                </div>
+            </div>
+            <ul id="taskList" class="task-list" aria-live="polite"></ul>
+            <div id="emptyState" class="empty-state"><span>✓</span>
+                <h3>No tasks here yet</h3>
+                <p>Add your first task above and get started.</p>
+            </div>
+        </section>
+    </main>
+    <template id="taskTemplate">
+        <li class="task-item">
+            <label class="check-wrap"><input class="task-check" type="checkbox"><span class="checkmark"></span></label>
+            <div class="task-content">
+                <h3 class="task-title"></h3>
+                <div class="task-meta"></div>
+            </div>
+            <div class="task-actions"><button class="edit-button" type="button"
+                    aria-label="Edit task">Edit</button><button class="delete-button" type="button"
+                    aria-label="Delete task">Delete</button></div>
+        </li>
+    </template>
+    <script src="todo.js"></script>
+</body>
+
+</html>
